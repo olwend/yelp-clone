@@ -23,4 +23,8 @@ ActiveRecord::Schema.define(version: 20170220150046) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "student", force: :cascade do |t|
+    t.text "name", null: false
+  end
+
 end
