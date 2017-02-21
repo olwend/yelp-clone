@@ -1,3 +1,7 @@
+require 'dotenv'
+
+
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+	Dotenv.load
+  	protect_from_forgery with: :exception
 end
