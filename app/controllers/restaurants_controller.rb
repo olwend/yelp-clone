@@ -9,24 +9,23 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-  	Restaurant.create(restaurant_params)
-  	redirect_to '/restaurants'
+  	@restaurant = Restaurant.create(restaurant_params)
+      redirect_to '/restaurants'
   end
 
   def show
   	@restaurant = Restaurant.find(params[:id])
+    @reviews = Review.where(:restaurant_id=>params[:id])
+    p @restaurant.reviews
   end
 
   def edit
     @restaurant = Restaurant.find(params[:id])
-    p @restaurant
   end
 
   def update
     @restaurant = Restaurant.find(params[:id])
-    p @restaurant
     @restaurant.update(restaurant_params)
-
     redirect_to '/restaurants'
   end
 
@@ -41,5 +40,11 @@ class RestaurantsController < ApplicationController
   def restaurant_params
     params.require(:restaurant).permit(:name,:description)
   end
+
+  def get_reviews(id)
+    @reviews = Review.where(:restaurant_id=>id)
+    p @reviews
+  end
+
 
 end
