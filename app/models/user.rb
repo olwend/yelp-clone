@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :restaurants
+  has_many :reviews, through: :restaurants
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
    def self.new_with_session(params, session)
