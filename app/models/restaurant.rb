@@ -7,5 +7,5 @@ class Restaurant < ActiveRecord::Base
    attributes[:user] ||= user
    reviews.build(attributes)
  end
- 
+
 end

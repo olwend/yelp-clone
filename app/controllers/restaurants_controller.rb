@@ -14,8 +14,7 @@ class RestaurantsController < ApplicationController
     @restaurant = Restaurant.new(name: restaurant_params["name"],
       description: restaurant_params["description"],
       user_id: current_user.id)
-      p current_user.id
-      
+      p @restaurant.save.inspect
 
     #@restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save

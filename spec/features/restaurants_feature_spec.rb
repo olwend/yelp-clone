@@ -58,7 +58,7 @@ scenario 'user is not logged in/sign up, cannot create new restaurant' do
       visit '/restaurants'
       click_link 'KFC'
       expect(page).to have_content 'KFC'
-      # expect(current_path).to eq "/restaurants/1"
+
     end
   end
 
@@ -73,9 +73,10 @@ scenario 'user is not logged in/sign up, cannot create new restaurant' do
       fill_in 'Description', with: 'Deep fried goodness'
       click_button 'Update Restaurant'
       click_link 'Kentucky Fried Chicken'
+      # Person.where(["user_name = ?", user_name]).first
+      p id = Restaurant.where(name: "KFC").first
       expect(page).to have_content 'Kentucky Fried Chicken'
       expect(page).to have_content 'Deep fried goodness'
-      # expect(current_path).to eq '/restaurants/1'
     end
   end
 
