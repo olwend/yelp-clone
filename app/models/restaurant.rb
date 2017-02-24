@@ -1,11 +1,17 @@
-class Restaurant < ActiveRecord::Base
-  has_many :reviews, dependent: :destroy
-  belongs_to :user
-  validates :name, length: { minimum: 3 }, uniqueness: true
+require_relative "with_user_association"
 
-  def build_review(attributes = {}, user)
-   attributes[:user] ||= user
-   reviews.build(attributes)
- end
+class Restaurant < ActiveRecord::Base
+
+  validates :name, length: { minimum: 3 }, uniqueness: true
+  has_many :reviews,
+      -> { extending WithUserAssociationExtension },
+      dependent: :destroy
+
+      def build_review(attributes = {}, user)
+       review = reviews.build(attributes)
+       review.user = user
+       review
+     end
+
 
 end
