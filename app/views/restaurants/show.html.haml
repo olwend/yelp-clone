@@ -1,0 +1,7 @@
+%p= @restaurant.name
+%p= @restaurant.description
+
+%ul
+  - @reviews.each do |review|
+    %li= review.thoughts
+    %li= review.rating
